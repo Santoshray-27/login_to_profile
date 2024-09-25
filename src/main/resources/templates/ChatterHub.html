@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <link rel="icon" type="image/png" href="ch.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: #3a6186;
+            background: -webkit-linear-gradient(to right, #89253ebb, #3a6186b4);
+            background: linear-gradient(to right, #89253ee1, #3a6186cb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 975px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-card {
+            background-color: #dadada;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 2px 3px 20px black;
+        }
+
+        .login-card .form-group {
+            margin-bottom: 15px;
+        }
+
+        .login-card .btn {
+            background-color: #0095f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .login-card .btn:hover {
+            background-color: #007bb5;
+        }
+
+        .login-card .links {
+            margin-top: 20px;
+        }
+
+        .login-card .links a {
+            color: #0095f6;
+            text-decoration: none;
+        }
+
+        .login-card .links a:hover {
+            text-decoration: underline;
+        }
+
+        .login-card .divider {
+            margin: 30px 0;
+            border: 1px solid #e6e6e6;
+        }
+
+        .footer-links {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .right-column {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .right-column {
+                display: block;
+                width: 50%;
+                padding: 40px;
+            }
+
+            .login-card {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-card">
+            <!-- <img src="" height="100px" alt="Logo"> -->
+            <h2
+                style="font-family:monospace; font-weight: bolder; text-align: center; color: #3a6186; margin-bottom: 20px;">
+                ChatterHub</h2>
+
+            <form th:action="@{/save}" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <input type="text" name="username" class="form-control" placeholder="Username**" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Name**" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="bio" class="form-control" placeholder="Bio**" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="gender" class="form-control" placeholder="Gender**" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="file" name="img" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Password**" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Log In</button>
+            </form>
+            <div class="divider"></div>
+            <div class="links">
+                <a href="#">Forgot password?</a>
+            </div>
+            <div class="footer-links">
+                <p>Don't have an account? <a href="#">Sign up</a></p>
+                <p><a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Help</a></p>
+            </div>
+        </div>
+</body>
+
+</html>

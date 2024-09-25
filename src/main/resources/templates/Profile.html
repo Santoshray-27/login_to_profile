@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="ch.png">
+    <title>Instagram Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #3a6186;
+            background: -webkit-linear-gradient(to right, #89253ebb, #3a6186b4);
+            background: linear-gradient(to right, #89253ee1, #3a6186cb);
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        * a {
+            text-decoration: none;
+            font-size: 13.5px;
+        }
+
+        .profile-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #dadada;
+            height: 95vh;
+            box-shadow: 2px 3px 20px black;
+
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+        }
+
+        .profile-info {
+            flex: 1;
+            margin-left: 40px;
+        }
+
+        .profile-info h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .stats {
+            display: flex;
+            margin: 10px 0;
+        }
+
+        .stat {
+            margin-right: 20px;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        .bio {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .gender {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .edit-profile-btn,
+        .share-profile-btn,
+        .more-btn {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .profile-highlights {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            text-align: center;
+        }
+
+        .highlight img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+        }
+
+        .highlight p {
+            font-size: 12px;
+            margin: 5px 0 0;
+        }
+
+        .profile-posts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .post img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        @media (max-width: 600px) {
+            .profile-header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile-info {
+                text-align: center;
+            }
+
+            .stats {
+                justify-content: center;
+            }
+
+            .profile-actions {
+                justify-content: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="profile-container" th:each="profile : ${profiles}">
+        <h2 th:text="${profile.username}">Username</h2>
+        <div class="profile-header">
+            <div class="profile-picture">
+                <img src="https://via.placeholder.com/80" th:src="@{|data:image/jpeg;base64,${profile.profilepicurl}|}" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <div class="stats">
+                    <div class="stat"><strong th:text="${profile.password}"></strong>password</div>
+                    <div class="stat"><strong>100M</strong>followers</div>
+                    <div class="stat"><strong>0</strong>following</div>
+                </div>
+                <p class="username" th:text="${profile.name}">Name</p>
+                <p class="bio" th:text="${profile.Bio}">Bio</p>
+                <p class="gender" th:text="${profile.gender}">Gender</p>
+                <div class="profile-actions">
+                    <a th:href="@{/update/{id}(id=${profile.id})}" class="edit-profile-btn">Edit profile</a>
+                    <button class="share-profile-btn">Share profile</button>
+                    <button class="more-btn"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+</body>
+
+</html>

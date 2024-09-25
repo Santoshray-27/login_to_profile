@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #3a6186;
+            background: -webkit-linear-gradient(to right, #89253ebb, #3a6186b4);
+            background: linear-gradient(to right, #89253ee1, #3a6186cb);
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 500px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: #dadada;
+            height: 95vh;
+            box-shadow: 2px 3px 20px black;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .edit-picture {
+            display: block;
+            color: #0095f6;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .profile-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .profile-form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .profile-form input[type="text"],
+        .profile-form textarea,
+        .profile-form select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .profile-form textarea {
+            resize: vertical;
+        }
+
+        .profile-form .save-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0095f6;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .profile-form .save-button:hover {
+            background-color: #007bb5;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+        }
+
+        .file-input {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .file-label {
+            display: inline-block;
+            color: rgb(0, 183, 255);
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .file-label:hover {
+            font-weight: bold;
+            color: rgb(0, 183, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <!-- Profile Picture -->
+           
+           
+        </div>
+
+        <!-- Profile Form -->
+        <form class="profile-form" th:action="@{/updateProfile}" th:object="${profile}" method="post"
+            enctype="multipart/form-data">
+            <label for="">Image</label>
+            <img th:src="@{/images/default-profile-picture.jpg}" th:field="*{img}" height="200" alt="Profile Picture"
+            class="profile-picture">
+            <br>
+            <!-- File Input -->
+            <input type="file" id="file-input" class="file-input">
+            <label for="file-input" class="file-label">Edit Image</label>
+
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" th:field="*{name}" placeholder="Enter name..">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" th:field="*{username}" placeholder="Enter username..">
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio</label>
+                <input type="text" id="bio" th:field="*{bio}" placeholder="Enter bio..">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" th:field="*{gender}">
+                    <option value="male" th:text="#{gender.male}">Male</option>
+                    <option value="female" th:text="#{gender.female}">Female</option>
+                    <option value="other" th:text="#{gender.other}">Other</option>
+                </select>
+            </div>
+            <button type="submit" class="save-button">Save</button>
+        </form>
+
+        <!-- Links for Additional Settings -->
+        <hr style="margin-top: 50px;">
+        <a style="text-decoration: none;">
+            <p style="color: #0095f6; font-size: 15px;">Switch to Professional account</p>
+        </a>
+        <hr>
+        <a style="text-decoration: none;">
+            <p style="color: #0095f6; font-size: 15px;">Personal Information Setting</p>
+        </a>
+        <hr>
+        <a style="text-decoration: none;">
+            <p style="color: #0095f6; font-size: 15px;">Show that your profile is verified</p>
+        </a>
+        <hr>
+    </div>
+</body>
+
+</html>
